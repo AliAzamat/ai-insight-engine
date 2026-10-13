@@ -48,10 +48,3 @@ export OPENAI_API_KEY=<your key>
 uvicorn insight.api:app --reload
 curl "localhost:8000/ask?q=which+region+had+the+most+paid+orders"
 ```
-
-## Limitations
-
-- **The table allowlist only inspects `FROM`.** A `JOIN` to a disallowed table passes (`select * from mart_revenue m join users u …` is accepted); the validator should also check `JOIN` targets, or use a real SQL parser.
-- The forecast is produced by the LLM, not a statistical model.
-- `with_retries`, `pick_model`, and the Prometheus metrics are implemented but not yet wired into the request path; the cache is in-process memory.
-- No dependency file, tests, or SQL execution layer.
